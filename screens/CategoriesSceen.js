@@ -11,7 +11,10 @@ function CategoriesScreen ({ navigation }) {
     //This *navigation* props is provided by react navigation from app.js for any navigation component
     const rendderCategoryItm =(itemData) =>{
         const pressHandler = () => { 
-              navigation.navigate("MealsOverview");
+              navigation.navigate("MealsOverview", {
+                  categoryId: itemData.item.id, 
+
+            });
         }
 
         return <CategoryGridTile title={itemData.item.title} 
