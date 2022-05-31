@@ -4,7 +4,7 @@ export const MealItem = ({title, imageUrl, duration, complexity, affordability})
   
     return (
     <View style={styles.mealItem}>
-        <Pressable android_ripple={{color: '#ccc'}} 
+        <Pressable android_ripple={{color: '#cccc'}} 
         style={({ pressed }) => 
           (pressed ? styles.buttonPressed : null)}>
             <View style={styles.innerContainer}>
