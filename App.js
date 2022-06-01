@@ -4,6 +4,7 @@ import CategoriesScreen from './screens/CategoriesSceen';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { MealsOverviewScreen } from './screens/MealsOverviewScreen';
+import { MealDetails } from './screens/MealDetails';
 
 const Stack = createNativeStackNavigator();//Object with two props
 
@@ -31,6 +32,8 @@ export default function App() {
                  //and the fuction will be excuted by react navigation when ever the screen become active , 
                  //then the fuction will retun un options object
                 />
+
+                <Stack.Screen name='MealDetails' component={MealDetails} />
             </Stack.Navigator>
             
           </NavigationContainer>

@@ -27,7 +27,11 @@ export const MealsOverviewScreen = ({ route, navigation }) => {
 
    const  renderMealItem = (itemData) =>{
         const item = itemData.item ;
+        console.log(item.id, "Screen");
+         
+
         const mealItemProps  = {
+            id: item.id,
             title: item.title,
             imageUrl: item.imageUrl,
             duration: item.duration,
@@ -36,7 +40,7 @@ export const MealsOverviewScreen = ({ route, navigation }) => {
             
         }
 
-       return <MealItem title={ mealItemProps.title } imageUrl={mealItemProps.imageUrl} duration={mealItemProps.duration} complexity={mealItemProps.complexity} affordability={mealItemProps.affordability} ></MealItem>
+       return <MealItem title={ mealItemProps.title } imageUrl={mealItemProps.imageUrl} duration={mealItemProps.duration} complexity={mealItemProps.complexity} affordability={mealItemProps.affordability}  id={mealItemProps.id}></MealItem>
    }
    
 
