@@ -4,7 +4,7 @@ import CategoriesScreen from './screens/CategoriesSceen';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { MealsOverviewScreen } from './screens/MealsOverviewScreen';
-import { MealDetails } from './screens/MealDetails';
+import { MealDetailsScreen } from './screens/MealDetailsScreen';
 
 const Stack = createNativeStackNavigator();//Object with two props
 
@@ -33,7 +33,7 @@ export default function App() {
                  //then the fuction will retun un options object
                 />
 
-                <Stack.Screen name='MealDetails' component={MealDetails} />
+                <Stack.Screen name='MealDetails' component={MealDetailsScreen} />
             </Stack.Navigator>
             
           </NavigationContainer>

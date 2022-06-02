@@ -1,6 +1,7 @@
 import {View , Text, Pressable, Image, StyleSheet, Platform} from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
+import { MealDetails } from './MealDetails';
 
 export const MealItem = ({ id, title, imageUrl, duration, complexity, affordability}) => {
     console.log(id, "Item");
@@ -9,7 +10,8 @@ export const MealItem = ({ id, title, imageUrl, duration, complexity, affordabil
 
     const selectMealItemHandler = () => {
         navigation.navigate('MealDetails', {
-             mealId: id
+             mealId: id,
+             title, imageUrl, duration, complexity, affordability
         });
     };
 
@@ -24,11 +26,7 @@ export const MealItem = ({ id, title, imageUrl, duration, complexity, affordabil
                     <Image style={styles.image} source={{ uri: imageUrl }} />
                     <Text style={styles.title}>{ title }</Text>
                 </View>
-                <View style={styles.details}>
-                    <Text style={styles.detailsItem}>{duration}m</Text>
-                    <Text style={styles.detailsItem}>{complexity.toUpperCase()}</Text>
-                    <Text style={styles.detailsItem}>{affordability.toUpperCase()}</Text>
-                </View>
+                <MealDetails duration={duration} complexity={complexity} affordability={affordability}/>
             </View>
         </Pressable>
      
@@ -69,14 +67,5 @@ const styles = StyleSheet.create({
         margin: 8
 
     },
-    details:{
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent:'center',
-        padding: 8
-    },
-    detailsItem:{
-        marginHorizontal: 4,
-        fontSize: 12
-    }
+  
 })
