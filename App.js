@@ -1,25 +1,51 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import CategoriesScreen from './screens/CategoriesSceen';
+import { FavoritesScreen } from './screens/FavoritesScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { MealsOverviewScreen } from './screens/MealsOverviewScreen';
 import { MealDetailsScreen } from './screens/MealDetailsScreen';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 
 const Stack = createNativeStackNavigator();//Object with two props
+const Drawer = createDrawerNavigator();
+
+
+const DrawerNavigator = () =>{
+  return <Drawer.Navigator screenOptions={{
+    headerStyle: { backgroundColor: '#351401'},
+    headerTintColor: 'white',
+    sceneContainerStyle: {backgroundColor: '#3f2f25' },
+    
+  }}>
+       <Drawer.Screen name='Categories' component={CategoriesScreen} options={
+         {
+           title: 'All Categories'
+         }
+       }/>
+       <Drawer.Screen name='Favorites' component={FavoritesScreen}/>
+  </Drawer.Navigator>
+}
 
 export default function App() {
   return (
        <> 
           <StatusBar style='light'/>
           <NavigationContainer>
-            <Stack.Navigator screenOptions={{headerStyle: { backgroundColor: '#351401'},
+            <Stack.Navigator screenOptions={{
+              headerStyle: { backgroundColor: '#351401'},
                   headerTintColor: 'white',
-                  contentStyle: {backgroundColor: '#3f2f25' }}}>
-                <Stack.Screen name="MealsCategories" 
-                component={CategoriesScreen} 
+                  contentStyle: {backgroundColor: '#3f2f25' }
+                  }}>
+                
+                <Stack.Screen name="Drawer" 
+                component={DrawerNavigator} 
                 options={{
-                  title: 'All Categorires'}}/>
+                 /*  title: 'All Categorires', */
+                  headerShown: false,
+                }}
+                  />
                 <Stack.Screen
                  name="MealsOverview" 
                  component={MealsOverviewScreen}
@@ -35,6 +61,9 @@ export default function App() {
 
                 <Stack.Screen name='MealDetails' 
                 component={MealDetailsScreen} 
+                options={{
+                  title: 'About The Meal'
+                }}
                /*  options={{
                   headerRight: () => {
                       return <Button title="Tap me!" onPress={}/>;
