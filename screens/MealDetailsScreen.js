@@ -6,26 +6,35 @@ import { Subtitle } from '../components/MealDetail/Subtitle';
 import { List } from '../components/MealDetail/List';
 import { IconButton } from '../components/IconButton';
 import {FavoritesContext} from '../store/context/favorites-context';
+import { useDispatch, useSelector } from 'react-redux';
+import { addFavorite, removeFavorite } from '../store/redux/favorites';
 
 
 export const MealDetailsScreen = ({route, navigation}) => {
 
-  const favoriteMealsCtx = useContext(FavoritesContext);//We get this Context by Passing  Context Object from context file  into the use contex hook
-  
+  //const favoriteMealsCtx = useContext(FavoritesContext);//We get this Context by Passing  Context Object from context file  into the use contex hook
+  const favoriteMealIds =   useSelector((state) => state.favoritesMeals.ids); //Use to get data out of our react store
+//State will provided by redux when excute the function
+console.log(favoriteMealIds, 'HELLOO');
+  const dispatch =   useDispatch();
   const mealId =  route.params.mealId;
     
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
   
-  const mealIsFavorite = favoriteMealsCtx.ids.includes(mealId); 
+  //const mealIsFavorite = favoriteMealsCtx.ids.includes(mealId); 
+ /*  const mealIsFavorite = favoriteMealIds.ids.includes(mealId);  */
+ const mealIsFavorite = favoriteMealIds.includes(mealId); 
   
   const changeFavoriteStatusHandler = ()  => {
     if(mealIsFavorite){
        
-       favoriteMealsCtx.removeFavorite(mealId);
+      // favoriteMealsCtx.removeFavorite(mealId);
+       dispatch(removeFavorite({id: mealId}));
        
      }else{
      
-       favoriteMealsCtx.addFavorite(mealId);
+       //favoriteMealsCtx.addFavorite(mealId);
+        dispatch(addFavorite({id: mealId }));
   
      } 
      
