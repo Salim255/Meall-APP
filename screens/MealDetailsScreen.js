@@ -13,14 +13,14 @@ export const MealDetailsScreen = ({route, navigation}) => {
   const favoriteMealsCtx = useContext(FavoritesContext);//We get this Context by Passing  Context Object from context file  into the use contex hook
   
   const mealId =  route.params.mealId;
-
+    
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
-
+  
   const mealIsFavorite = favoriteMealsCtx.ids.includes(mealId); 
-   
+  
   const changeFavoriteStatusHandler = ()  => {
     if(mealIsFavorite){
-     
+       
        favoriteMealsCtx.removeFavorite(mealId);
        
      }else{
@@ -36,10 +36,10 @@ export const MealDetailsScreen = ({route, navigation}) => {
        headerRight: () => {
          {/* <Button  title='Tab me' onPress={headerButtonPressHandler}/> */}
          
-         return <IconButton icon={mealIsFavorite ? 'star' : 'star-outline'}  color='white' onPress={changeFavoriteStatusHandler}/>
+         return <IconButton icon={ mealIsFavorite ? 'star' : 'star-outline' }  color='white' onPress={changeFavoriteStatusHandler}/>
        }
     })
-  }, [navigation]);
+  }, [navigation, changeFavoriteStatusHandler ]);
 
   return (
   
